@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "KoTeSisa API",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5029"
+    }
+  ],
+  "paths": {
+    "/healthz": {
+      "get": {
+        "tags": [
+          "KoTeSisaApi"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saloons": {
+      "post": {
+        "tags": [
+          "KoTeSisaApi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Saloon"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Saloon": {
+        "type": "object",
+        "properties": {
+          "saloonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nazivSalona": {
+            "type": "string",
+            "nullable": true
+          },
+          "adresaUlica": {
+            "type": "string",
+            "nullable": true
+          },
+          "adresaBroj": {
+            "type": "string",
+            "nullable": true
+          },
+          "grad": {
+            "type": "string",
+            "nullable": true
+          },
+          "postanskiBroj": {
+            "type": "string",
+            "nullable": true
+          },
+          "lokacija": {
+            "type": "string",
+            "nullable": true
+          },
+          "brojTelefona": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "adminIme": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "radnoVrijeme": {
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "kreirano": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "azurirano": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
