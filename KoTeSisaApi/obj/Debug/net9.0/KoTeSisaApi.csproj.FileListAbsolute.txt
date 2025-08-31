@@ -47,3 +47,4 @@ C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\ref
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.pdb
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.genruntimeconfig.cache
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\ref\KoTeSisaApi.dll
+C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.sourcelink.json

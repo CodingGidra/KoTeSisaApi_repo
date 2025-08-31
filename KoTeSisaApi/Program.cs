@@ -1,26 +1,28 @@
-﻿using System.Text.Json.Serialization.Metadata;
-using KoTeSisaApi.Data;
-using KoTeSisaApi.Models;
+﻿using KoTeSisaApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// JSON: omogući reflection resolver (izbjegava NotSupportedException)
+// JSON
 builder.Services.ConfigureHttpJsonOptions(o =>
 {
     o.SerializerOptions.TypeInfoResolverChain.Add(new DefaultJsonTypeInfoResolver());
 });
 
-// EF Core (PostgreSQL)
+// EF Core (Postgres)
 builder.Services.AddDbContext<AppDb>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
-// CORS (dozvoli sve za lokalni dev i Swagger)
+// CORS
 builder.Services.AddCors(p =>
     p.AddDefaultPolicy(pol => pol.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
-// Swagger (fiksiran server na http://localhost:5029)
+// 🚩 Dodaj controllere
+builder.Services.AddControllers();
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -30,26 +32,17 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Bez HTTPS redirekcije (radimo na http://localhost:5029)
 app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "KoTeSisa API v1");
-    });
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KoTeSisa API v1"));
 }
 
-app.MapGet("/healthz", () => "ok");
+//app.MapGet("/healthz", () => "ok");
 
-// POST /saloons
-app.MapPost("/saloons", async (AppDb db, Saloon s) =>
-{
-    db.Saloons.Add(s);
-    await db.SaveChangesAsync();
-    return Results.Created($"/saloons/{s.SaloonId}", s);
-});
+// 🚩 Mapiraj controllere
+app.MapControllers();
 
 app.Run();
