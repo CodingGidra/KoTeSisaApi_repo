@@ -26,7 +26,8 @@ namespace KoTeSisaApi.Data
             e.Property(x => x.Email).HasColumnName("email");
             e.Property(x => x.AdminIme).HasColumnName("admin_ime");
             e.Property(x => x.Password).HasColumnName("password");
-            e.Property(x => x.RadnoVrijeme).HasColumnName("radno_vrijeme");
+            e.Property(x => x.RadnoVrijemeOd).HasColumnName("radno_vrijeme_od");
+            e.Property(x => x.RadnoVrijemeDo).HasColumnName("radno_vrijeme_do");
             e.Property(x => x.Logo).HasColumnName("logo");
             e.Property(x => x.Kreirano).HasColumnName("kreirano");
             e.Property(x => x.Azurirano).HasColumnName("azurirano");

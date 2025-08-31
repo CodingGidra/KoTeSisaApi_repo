@@ -13,7 +13,8 @@
         public string Email { get; set; } = "";
         public string AdminIme { get; set; } = "";
         public string Password { get; set; } = "";
-        public string? RadnoVrijeme { get; set; }
+        public TimeSpan? RadnoVrijemeOd { get; set; }  
+        public TimeSpan? RadnoVrijemeDo { get; set; }
         public string? Logo { get; set; }
         public DateTime Kreirano { get; set; }
         public DateTime Azurirano { get; set; }

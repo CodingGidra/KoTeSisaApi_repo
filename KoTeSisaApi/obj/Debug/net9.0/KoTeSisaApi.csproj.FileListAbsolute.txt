@@ -32,6 +32,7 @@ C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoT
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.csproj.CoreCompileInputs.cache
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.sourcelink.json
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -47,4 +48,3 @@ C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\ref
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.pdb
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.genruntimeconfig.cache
 C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\ref\KoTeSisaApi.dll
-C:\Users\amird\source\.NET_projects\KoTeSisaApi\KoTeSisaApi\obj\Debug\net9.0\KoTeSisaApi.sourcelink.json
