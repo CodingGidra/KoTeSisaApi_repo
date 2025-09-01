@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KoTeSisaApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f380293077ff5163c6cf867a3589ceef15ca995")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f997161f73c0c647ae2d5260e829837ffad77eae")]
 [assembly: System.Reflection.AssemblyProductAttribute("KoTeSisaApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KoTeSisaApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

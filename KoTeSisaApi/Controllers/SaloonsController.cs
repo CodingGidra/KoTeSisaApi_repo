@@ -23,7 +23,7 @@ public class SaloonsController : ControllerBase
     public async Task<ActionResult<List<SaloonDto>>> Search([FromQuery] string q)
     {
         if (string.IsNullOrWhiteSpace(q) || q.Trim().Length < 3)
-            return Ok(new List<SaloonDto>()); // < 3 slova -> prazan rezultat
+            return Ok(new List<SaloonDto>());
 
         q = q.Trim();
 
@@ -34,7 +34,7 @@ public class SaloonsController : ControllerBase
                 EF.Functions.ILike(s.Grad, $"%{q}%") ||
                 EF.Functions.ILike(s.AdresaUlica, $"%{q}%"))
             .OrderBy(s => s.NazivSalona)
-            .Select(s => s.ToDto())     // koristi tvoj extension -> SaloonDto
+            .Select(s => s.ToDto())     
             .ToListAsync();
 
         return Ok(list);
