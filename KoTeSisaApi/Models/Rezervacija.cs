@@ -12,7 +12,6 @@
         public string UserPrezime { get; set; } = default!;
         public string KontaktTel { get; set; } = default!;
 
-        public string? Usluga { get; set; }
         public int? UslugaId { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; }

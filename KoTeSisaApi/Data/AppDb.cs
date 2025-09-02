@@ -1,5 +1,6 @@
 ﻿using KoTeSisaApi.Models;
 using Microsoft.EntityFrameworkCore;
+using YourNamespace.Models;
 
 namespace KoTeSisaApi.Data
 {
@@ -9,6 +10,7 @@ namespace KoTeSisaApi.Data
 
         public DbSet<Saloon> Saloons => Set<Saloon>();
         public DbSet<Rezervacija> Rezervacije => Set<Rezervacija>();
+        public DbSet<Usluga> Usluge => Set<Usluga>();
 
 
         protected override void OnModelCreating(ModelBuilder mb)
@@ -44,7 +46,6 @@ namespace KoTeSisaApi.Data
             r.Property(x => x.UserIme).HasColumnName("user_ime");
             r.Property(x => x.UserPrezime).HasColumnName("user_prezime");
             r.Property(x => x.KontaktTel).HasColumnName("kontakt_tel");
-            r.Property(x => x.Usluga).HasColumnName("usluga");
             r.Property(x => x.UslugaId).HasColumnName("usluga_id");
             r.Property(x => x.CreatedAt).HasColumnName("created_at");
             r.Property(x => x.UpdatedAt).HasColumnName("updated_at");
@@ -52,6 +53,27 @@ namespace KoTeSisaApi.Data
              .WithMany()
              .HasForeignKey(x => x.SaloonId)
              .OnDelete(DeleteBehavior.Restrict);
+
+            var u = mb.Entity<Usluga>();
+            u.ToTable("usluge");
+            u.HasKey(x => x.UslugaId);
+            u.Property(x => x.UslugaId).HasColumnName("usluga_id");
+
+            u.Property(x => x.Naziv).HasColumnName("naziv");
+            u.Property(x => x.Trajanje)
+                .HasColumnName("trajanje")
+                .HasColumnType("interval");            
+            u.Property(x => x.Buffer)
+                .HasColumnName("buffer")
+                .HasColumnType("interval");            
+            u.Property(x => x.Aktivno).HasColumnName("aktivno");
+
+            u.Property(x => x.Kreirano)
+                .HasColumnName("kreirano")
+                .HasColumnType("timestamptz");         
+            u.Property(x => x.Azurirano)
+                .HasColumnName("azurirano")
+                .HasColumnType("timestamptz");
         }
     }
 }

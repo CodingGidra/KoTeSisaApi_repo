@@ -31,8 +31,4 @@ public sealed class RezervacijaDto
 
     [JsonPropertyName("usluga_id")]
     public int? UslugaId { get; set; }
-
-    [JsonPropertyName("usluga")]
-    [StringLength(100)]
-    public string? Usluga { get; set; }
 }

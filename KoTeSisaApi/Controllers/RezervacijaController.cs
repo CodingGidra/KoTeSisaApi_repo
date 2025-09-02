@@ -35,7 +35,6 @@ public class RezervacijaController : ControllerBase
             UserIme = dto.UserIme.Trim(),
             UserPrezime = dto.UserPrezime.Trim(),
             KontaktTel = dto.KontaktTel.Trim(),
-            Usluga = dto.Usluga,
             UslugaId = dto.UslugaId,
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow
@@ -73,7 +72,6 @@ public class RezervacijaController : ControllerBase
             user_ime = r.UserIme,
             user_prezime = r.UserPrezime,
             kontakt_tel = r.KontaktTel,
-            usluga = r.Usluga,
             usluga_id = r.UslugaId,
             created_at = r.CreatedAt,
             updated_at = r.UpdatedAt
@@ -108,7 +106,6 @@ public class RezervacijaController : ControllerBase
         r.UserIme = dto.UserIme.Trim();
         r.UserPrezime = dto.UserPrezime.Trim();
         r.KontaktTel = dto.KontaktTel.Trim();
-        if (!string.IsNullOrWhiteSpace(dto.Usluga)) r.Usluga = dto.Usluga;
         r.UslugaId = dto.UslugaId;
         r.UpdatedAt = DateTimeOffset.UtcNow;
 
@@ -130,7 +127,6 @@ public class RezervacijaController : ControllerBase
             user_ime = r.UserIme,
             user_prezime = r.UserPrezime,
             kontakt_tel = r.KontaktTel,
-            usluga = r.Usluga,
             usluga_id = r.UslugaId,
             created_at = r.CreatedAt,
             updated_at = r.UpdatedAt

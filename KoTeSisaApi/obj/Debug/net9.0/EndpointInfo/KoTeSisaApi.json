@@ -527,6 +527,84 @@
           }
         }
       }
+    },
+    "/api/Usluge": {
+      "get": {
+        "tags": [
+          "Usluge"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usluga"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usluga"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usluga"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Usluge/{id}": {
+      "get": {
+        "tags": [
+          "Usluge"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usluga"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usluga"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usluga"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -637,12 +715,6 @@
           "usluga_id": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "usluga": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
             "nullable": true
           }
         },
@@ -776,6 +848,48 @@
           "logo": {
             "type": "string",
             "nullable": true
+          },
+          "kreirano": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "azurirano": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Usluga": {
+        "required": [
+          "aktivno",
+          "azurirano",
+          "buffer",
+          "kreirano",
+          "naziv",
+          "trajanje"
+        ],
+        "type": "object",
+        "properties": {
+          "uslugaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "naziv": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "trajanje": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "buffer": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "aktivno": {
+            "type": "boolean"
           },
           "kreirano": {
             "type": "string",
