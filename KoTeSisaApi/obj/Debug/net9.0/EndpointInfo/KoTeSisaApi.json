@@ -315,6 +315,117 @@
         }
       }
     },
+    "/rezervacije/dan": {
+      "get": {
+        "tags": [
+          "Rezervacija"
+        ],
+        "parameters": [
+          {
+            "name": "saloon_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "datum",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2025-09-02"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rezervacije/slotovi": {
+      "get": {
+        "tags": [
+          "Rezervacija"
+        ],
+        "parameters": [
+          {
+            "name": "saloon_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "datum",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2025-09-02"
+            }
+          },
+          {
+            "name": "od",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "do",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "korak",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 15
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/saloons/{id}": {
       "get": {
         "tags": [

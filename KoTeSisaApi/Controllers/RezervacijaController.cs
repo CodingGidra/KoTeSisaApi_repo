@@ -78,6 +78,20 @@ public class RezervacijaController : ControllerBase
         });
     }
 
+    [HttpGet("dan")]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetForDay([FromQuery] long saloon_id, [FromQuery] DateOnly datum, CancellationToken ct)
+    {
+        var times = await _db.Rezervacije
+            .Where(x => x.SaloonId == saloon_id && x.DatumRezervacije == datum)
+            .OrderBy(x => x.VrijemeRezervacije)
+            .Select(x => x.VrijemeRezervacije) // TimeOnly
+            .ToListAsync(ct);
+
+        var result = times.Select(t => t.ToString("HH:mm")); // npr. "10:45"
+        return Ok(result);
+    }
+
     [HttpPut("{id:long}")]
     [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
@@ -145,4 +159,89 @@ public class RezervacijaController : ControllerBase
         await _db.SaveChangesAsync(ct);
         return NoContent();
     }
+
+    // GET /rezervacije/slotovi?saloon_id=1&datum=2025-09-04&od=09:00&do=17:00&korak=15
+    [HttpGet("slotovi")]
+    public async Task<IActionResult> GetSlotovi(
+        [FromQuery] long saloon_id,
+        [FromQuery] DateOnly datum,
+        [FromQuery] string od,
+        [FromQuery] string @do,
+        [FromQuery] int korak = 15,
+        CancellationToken ct = default)
+    {
+        if (!TimeSpan.TryParse(od, out var tOd) ||
+            !TimeSpan.TryParse(@do, out var tDo) ||
+            korak <= 0)
+            return BadRequest(new { poruka = "Parametri od/do/korak nisu validni." });
+
+        var danOd = Spoji(datum, TimeOnly.FromTimeSpan(tOd));
+        var danDo = Spoji(datum, TimeOnly.FromTimeSpan(tDo));
+        if (danDo <= danOd) return BadRequest(new { poruka = "Vrijeme 'do' mora biti poslije 'od'." });
+
+        var korakTs = TimeSpan.FromMinutes(korak);
+        var defaultTrajanje = TimeSpan.FromMinutes(30); // ako UslugaId == null
+
+        // LEFT JOIN: rezervacije ↔ usluge (jer je UslugaId nullable)
+        var rasponi = await _db.Rezervacije
+            .Where(r => r.SaloonId == saloon_id && r.DatumRezervacije == datum)
+            .GroupJoin(_db.Usluge,
+                       r => (int?)r.UslugaId,
+                       u => (int?)u.UslugaId,
+                       (r, us) => new { r, us })
+            .SelectMany(x => x.us.DefaultIfEmpty(), (x, u) => new
+            {
+                Start = Spoji(x.r.DatumRezervacije, x.r.VrijemeRezervacije),
+                End = Spoji(x.r.DatumRezervacije, x.r.VrijemeRezervacije)
+                       + (u != null ? (u.Trajanje + u.Buffer) : defaultTrajanje)
+            })
+            .ToListAsync(ct);
+
+        var slotovi = new List<object>();
+        for (var t = danOd; t < danDo; t = t.Add(korakTs))
+        {
+            var start = t;
+            var end = t.Add(korakTs);
+            var zauzet = rasponi.Any(r => start < r.End && end > r.Start);
+            slotovi.Add(new { vrijeme = start.ToString("HH\\:mm"), zauzet });
+        }
+
+        var dodatniStartovi = rasponi
+            .Select(r => r.End)
+            .Where(e => e >= danOd && e < danDo)
+            .Select(e => e.ToString("HH\\:mm"))
+            .Distinct()
+            .ToList();
+
+        foreach (var s in dodatniStartovi)
+        {
+            if (TimeSpan.TryParse(s, out var ts))
+            {
+                var start = Spoji(datum, TimeOnly.FromTimeSpan(ts));
+                if (start >= danOd && start < danDo)
+                {
+                    var end = start.Add(korakTs);
+                    var zauzet = rasponi.Any(r => start < r.End && end > r.Start);
+                    slotovi.Add(new { vrijeme = s, zauzet });
+                }
+            }
+        }
+
+
+        return Ok(new
+        {
+            datum = datum.ToString("yyyy-MM-dd"),
+            korak_minuta = korak,
+            slotovi,
+            dodatni_startovi = dodatniStartovi
+        });
+    }
+
+    // Helper (dodaj u isti controller, npr. ispod action-a):
+    private static DateTimeOffset Spoji(DateOnly d, TimeOnly t)
+    {
+        var dt = new DateTime(d.Year, d.Month, d.Day, t.Hour, t.Minute, t.Second, DateTimeKind.Unspecified);
+        return new DateTimeOffset(dt, TimeSpan.Zero);
+    }
+
 }

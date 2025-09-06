@@ -249,6 +249,73 @@
     ]
   },
   {
+    "ContainingType": "KoTeSisaApi.Controllers.RezervacijaController",
+    "Method": "GetForDay",
+    "RelativePath": "rezervacije/dan",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saloon_id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "datum",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KoTeSisaApi.Controllers.RezervacijaController",
+    "Method": "GetSlotovi",
+    "RelativePath": "rezervacije/slotovi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saloon_id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "datum",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "od",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "do",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "korak",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "KoTeSisaApi.Controllers.SaloonsController",
     "Method": "Create",
     "RelativePath": "saloons",
