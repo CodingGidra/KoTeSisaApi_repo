@@ -1,4 +1,6 @@
-﻿namespace KoTeSisaApi.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace KoTeSisaApi.Models
 {
     public class Rezervacija
     {
@@ -17,6 +19,7 @@
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
-        public Saloon? Saloon { get; set; }
+        [ForeignKey(nameof(SaloonId))]
+        public Saloon Saloon { get; set; } = default!;
     }
 }

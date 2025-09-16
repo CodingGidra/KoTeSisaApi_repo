@@ -72,18 +72,125 @@
     ]
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_5",
-    "RelativePath": "healthz",
-    "HttpMethod": "GET",
-    "IsController": false,
+    "ContainingType": "KoTeSisaApi.Controllers.FrizerController",
+    "Method": "Create",
+    "RelativePath": "frizer",
+    "HttpMethod": "POST",
+    "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "KoTeSisaApi.Dtos.FrizerCreateDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "KoTeSisaApi.Dtos.FrizerDto",
         "MediaTypes": [
-          "text/plain"
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KoTeSisaApi.Controllers.FrizerController",
+    "Method": "GetById",
+    "RelativePath": "frizer/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KoTeSisaApi.Dtos.FrizerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KoTeSisaApi.Controllers.FrizerController",
+    "Method": "Update",
+    "RelativePath": "frizer/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "KoTeSisaApi.Dtos.FrizerCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KoTeSisaApi.Dtos.FrizerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KoTeSisaApi.Controllers.FrizerController",
+    "Method": "Delete",
+    "RelativePath": "frizer/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KoTeSisaApi.Controllers.FrizerController",
+    "Method": "ListBySaloon",
+    "RelativePath": "frizers/{saloonId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saloonId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[KoTeSisaApi.Dtos.FrizerDto, KoTeSisaApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
         ],
         "StatusCode": 200
       }
@@ -99,7 +206,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "KoTeSisaApi.Models.RezervacijaDto",
+        "Type": "KoTeSisaApi.Dtos.RezervacijaDto",
         "IsRequired": true
       }
     ],
@@ -183,7 +290,7 @@
       },
       {
         "Name": "dto",
-        "Type": "KoTeSisaApi.Models.RezervacijaDto",
+        "Type": "KoTeSisaApi.Dtos.RezervacijaDto",
         "IsRequired": true
       }
     ],
@@ -264,7 +371,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "KoTeSisaApi.Models.SaloonDto",
+        "Type": "KoTeSisaApi.Dtos.SaloonDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -290,7 +397,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "KoTeSisaApi.Models.SaloonDto",
+        "Type": "KoTeSisaApi.Dtos.SaloonDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -321,7 +428,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "KoTeSisaApi.Models.SaloonDto",
+        "Type": "KoTeSisaApi.Dtos.SaloonDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -363,7 +470,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[KoTeSisaApi.Models.SaloonDto, KoTeSisaApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[KoTeSisaApi.Dtos.SaloonDto, KoTeSisaApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

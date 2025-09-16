@@ -1,4 +1,6 @@
-﻿namespace KoTeSisaApi.Models
+﻿using KoTeSisaApi.Dtos;
+
+namespace KoTeSisaApi.Models
 {
     public static class SaloonExtensions
     {

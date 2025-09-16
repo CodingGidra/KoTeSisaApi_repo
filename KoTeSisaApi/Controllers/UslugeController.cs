@@ -29,7 +29,7 @@ namespace KoTeSisaApi.Controllers
         }
 
         // GET: api/usluge/5
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:long}")]
         public async Task<ActionResult<Usluga>> GetOne(int id)
         {
             var usluga = await _db.Usluge.FindAsync(id);
