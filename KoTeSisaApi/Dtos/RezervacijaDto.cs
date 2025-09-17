@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace KoTeSisaApi.Models;
+namespace KoTeSisaApi.Dtos;
 
 public sealed class RezervacijaDto
 {

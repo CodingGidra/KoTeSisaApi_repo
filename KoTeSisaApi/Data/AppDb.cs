@@ -11,15 +11,14 @@ namespace KoTeSisaApi.Data
         public DbSet<Saloon> Saloons => Set<Saloon>();
         public DbSet<Rezervacija> Rezervacije => Set<Rezervacija>();
         public DbSet<Usluga> Usluge => Set<Usluga>();
-
+        public DbSet<Frizer> Frizeri => Set<Frizer>();
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
             var e = mb.Entity<Saloon>();
-            e.ToTable("saloon");                     
+            e.ToTable("saloon");
             e.HasKey(x => x.SaloonId);
             e.Property(x => x.SaloonId).HasColumnName("saloon_id");
-
             e.Property(x => x.NazivSalona).HasColumnName("naziv_salona");
             e.Property(x => x.AdresaUlica).HasColumnName("adresa_ulica");
             e.Property(x => x.AdresaBroj).HasColumnName("adresa_broj");
@@ -52,28 +51,34 @@ namespace KoTeSisaApi.Data
             r.HasOne(x => x.Saloon)
              .WithMany()
              .HasForeignKey(x => x.SaloonId)
+             .HasPrincipalKey(s => s.SaloonId)
              .OnDelete(DeleteBehavior.Restrict);
 
             var u = mb.Entity<Usluga>();
             u.ToTable("usluge");
             u.HasKey(x => x.UslugaId);
             u.Property(x => x.UslugaId).HasColumnName("usluga_id");
-
             u.Property(x => x.Naziv).HasColumnName("naziv");
-            u.Property(x => x.Trajanje)
-                .HasColumnName("trajanje")
-                .HasColumnType("interval");            
-            u.Property(x => x.Buffer)
-                .HasColumnName("buffer")
-                .HasColumnType("interval");            
+            u.Property(x => x.Trajanje).HasColumnName("trajanje").HasColumnType("interval");
+            u.Property(x => x.Buffer).HasColumnName("buffer").HasColumnType("interval");
             u.Property(x => x.Aktivno).HasColumnName("aktivno");
+            u.Property(x => x.Kreirano).HasColumnName("kreirano").HasColumnType("timestamptz");
+            u.Property(x => x.Azurirano).HasColumnName("azurirano").HasColumnType("timestamptz");
 
-            u.Property(x => x.Kreirano)
-                .HasColumnName("kreirano")
-                .HasColumnType("timestamptz");         
-            u.Property(x => x.Azurirano)
-                .HasColumnName("azurirano")
-                .HasColumnType("timestamptz");
+            var f = mb.Entity<Frizer>();
+            f.ToTable("frizeri");
+            f.HasKey(x => x.Id);
+            f.Property(x => x.Id).HasColumnName("id");
+            f.Property(x => x.SaloonId).HasColumnName("saloon_id");
+            f.Property(x => x.Ime).HasColumnName("ime");
+            f.Property(x => x.Prezime).HasColumnName("prezime");
+            f.Property(x => x.KontaktBroj).HasColumnName("kontakt_broj");
+            f.Property(x => x.Slika).HasColumnName("slika");
+            f.HasOne(x => x.Saloon)
+             .WithMany()
+             .HasForeignKey(x => x.SaloonId)
+             .HasPrincipalKey(s => s.SaloonId)
+             .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
